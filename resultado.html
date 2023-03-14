@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Painel do Professor</title>
+</head>
+<script>
+    //função para armazenar as notas digitadas e calcular o resultado 
+
+    function calcMedia(){
+     const url= new URLSearchParams(window.location.search)
+     let nota1=url.get("av1")
+     let nota2=url.get("av2")
+
+     nota1= Number (nota1)
+     nota2= Number (nota2)
+
+     let media= (nota1+nota2)/2
+
+     document.getElementById("media").value=media
+
+     //criando condição para dizer se o aluno está aprovado ou reprovado
+
+    if(media >=6){
+        document.getElementById("status").innerHTML="APROVADO"
+        document.getElementById("status").style.color="green"
+
+    }
+    else{
+        document.getElementById("status").innerHTML="RREPROVADO"
+        document.getElementById("status").style.color="red"
+
+        
+    }
+}
+</script>
+
+<body onload="calcMedia()">
+    <main>
+        <h1>Painel do Professor</h1>
+        <h2>Somatório de Notas</h2>
+        <form action="index.html" method="post">
+            <label>A média do aluno é:</label>
+            <input type="text" id="media">
+            
+            <p>O aluno está <span id="status"></span> </p>
+
+       
+            <input type="submit" value="voltar">
+            </form>
+    </main>    
+</body>
+</html>
